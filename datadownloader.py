@@ -25,6 +25,7 @@ def instantiate_directory ():
     global directory
     directory = dld
 
+# Requests a download of only the necessary file
 def download_series(series : str):
     git = Github()
     repo = git.get_repo(repository)

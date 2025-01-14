@@ -9,9 +9,12 @@ heading_series = ["f1", "fe", "indycar", "motogp"]
 
 series_emote = [":red_square:", ":blue_square:", ":white_large_square:", ":yellow_square:",
                 ":purple_square:", ":green_square:", ":black_large_square:"]
+
 def output_race(series : str, selected_race : dict):
     heading, emote = determine_variables(series)
     output_string = ""
+
+    #Event-Headline series present a headline for the whole event
     if series in heading_series:
         name = selected_race["name"]
         output_string += name
@@ -56,6 +59,7 @@ def convert_to_discord_name(name : str, emote : str, series : str):
     discord_name = f"{emote} **{series_name} - {session_name}: **"
     return discord_name
 
+# Adds necessary discord formatting for the timestamp
 def convert_to_discord_timestamp(timestamp : str):
     unix_timestamp = str(convert_to_unix(timestamp))
     discord_timestamp = "<t:" + unix_timestamp + ":f>"

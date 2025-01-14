@@ -31,7 +31,7 @@ def process_series(series : str, num : int):
     with open(directory, "r") as json_file:
         data = json.load(json_file)
 
-    # Searches through the data, finding the race who's round is equal to num
+    # Searches through the data, finding the race with the corresponding round number
     selected_race = next((race for race in data['races'] if race['round'] == num), None)
 
     output_race(series, selected_race)
