@@ -32,7 +32,7 @@ def output_race(series : str, selected_race : dict):
         discord_time = convert_to_discord_timestamp(session_time)
         output_string += discord_name + discord_time + "\n"
 
-    print(output_string)
+    return output_string
 def determine_variables(series : str):
     match series:
         case "f1":

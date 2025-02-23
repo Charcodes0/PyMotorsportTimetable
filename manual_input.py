@@ -9,6 +9,6 @@ def request_series():
 
     print("Please enter in the format \"f1:n\" - where 'n' is the round number")
     races = input()
-    interpret_series(races)
+    interpret_series(races, True)
 
 request_series()

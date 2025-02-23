@@ -8,15 +8,24 @@ from race_printer import output_race
 filepath = "\\_db\\"
 year_path = '\\2025.json'
 
-def interpret_series(series : str):
+def interpret_series(series : str, manual : bool):
     # Ensure directories are correctly formatted
     instantiate_directory()
 
     series_list = series.lower().split(" ")
+
+    formatted_series = []
+
     for r in series_list:
         round_details = r.split(":")
         round_num = int(round_details[1])
-        process_series(round_details[0], round_num)
+        single_series = process_series(round_details[0], round_num)
+        formatted_series.append(single_series)
+
+    # Only print if code is running manually from command line
+    for i in formatted_series:
+        if manual:
+            print(i)
 
 def process_series(series : str, num : int):
 
@@ -29,4 +38,4 @@ def process_series(series : str, num : int):
     # Searches through the data, finding the race with the corresponding round number
     selected_race = next((race for race in data['races'] if race['round'] == num), None)
 
-    output_race(series, selected_race)
+    return output_race(series, selected_race)
