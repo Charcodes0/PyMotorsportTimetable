@@ -2,7 +2,7 @@
 # Credit to @rdash99 for the base of this code
 
 import os
-from github import Github, Repository, ContentFile
+from github import Repository, ContentFile
 import requests
 
 def download_folder(repo: Repository, folder: str, out: str):

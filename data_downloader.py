@@ -2,10 +2,9 @@
 # Credit to @rdash99 for the base of this code
 
 import os
-import subprocess
-from github import Github, Repository, ContentFile
+from github import Github
 
-import git_download
+from git_download import download_folder
 
 repository = 'sportstimes/f1'
 year_path = '/2025.json'
@@ -32,4 +31,4 @@ def download_series(series : str):
 
     folder = '_db/' + series + year_path
 
-    gitdownload.download_folder(repo, folder, directory)
+    download_folder(repo, folder, directory)
