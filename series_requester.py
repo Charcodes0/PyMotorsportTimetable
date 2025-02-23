@@ -23,9 +23,11 @@ def interpret_series(series : str, manual : bool):
         formatted_series.append(single_series)
 
     # Only print if code is running manually from command line
-    for i in formatted_series:
-        if manual:
+    if manual:
+        for i in formatted_series:
             print(i)
+    else:
+        return formatted_series
 
 def process_series(series : str, num : int):
 
