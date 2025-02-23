@@ -1,9 +1,9 @@
 import json
 import os
 
-import datadownloader
-from datadownloader import download_series, instantiate_directory
-from raceprinter import output_race
+import data_downloader
+from data_downloader import download_series, instantiate_directory
+from race_printer import output_race
 
 filepath = "\\_db\\"
 year_path = '\\2025.json'

@@ -5,7 +5,7 @@ import os
 import subprocess
 from github import Github, Repository, ContentFile
 
-import gitdownload
+import git_download
 
 repository = 'sportstimes/f1'
 year_path = '/2025.json'
