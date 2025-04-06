@@ -1,4 +1,4 @@
-from series_requester import interpret_series
+from series_requester import interpret_series, instantiate_directory
 
 def request_series():
     series_options = ["f1", "f2", "f3", "fe", "f1-academy", "indycar", "motogp"]
@@ -9,6 +9,8 @@ def request_series():
 
     print("Please enter in the format \"f1:n\" - where 'n' is the round number")
     races = input()
-    interpret_series(races, True)
+
+    instantiate_directory()
+    interpret_series(races, True, True)
 
 request_series()

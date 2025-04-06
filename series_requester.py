@@ -8,9 +8,7 @@ from race_printer import output_race
 filepath = "\\_db\\"
 year_path = '\\2025.json'
 
-def interpret_series(series : str, manual : bool):
-    # Ensure directories are correctly formatted
-    instantiate_directory()
+def interpret_series(series : str, manual : bool, dl : bool):
 
     series_list = series.lower().split(" ")
 
@@ -19,7 +17,7 @@ def interpret_series(series : str, manual : bool):
     for r in series_list:
         round_details = r.split(":")
         round_num = int(round_details[1])
-        single_series = process_series(round_details[0], round_num)
+        single_series = process_series(round_details[0], round_num, dl)
         formatted_series.append(single_series)
 
     # Only print if code is running manually from command line
@@ -29,10 +27,12 @@ def interpret_series(series : str, manual : bool):
     else:
         return formatted_series
 
-def process_series(series : str, num : int):
+def process_series(series : str, num : int, dl : bool):
 
-    # Downloads the requested series
-    download_series(series)
+    # Downloads the requested series - if requested
+    if dl:
+        download_series(series)
+
     directory = os.getcwd() + filepath + series + year_path
     with open(directory, "r") as json_file:
         data = json.load(json_file)
