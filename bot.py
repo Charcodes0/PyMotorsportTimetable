@@ -1,3 +1,5 @@
+import os
+
 import discord
 import logging
 import re
@@ -13,26 +15,6 @@ author_checking = True
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
-
-# Secrets
-
-#Define the bot token
-token_file = open("secret/token.txt", "r")
-token = token_file.read()
-token_file.close()
-
-# Define Admins
-admin_id_list = []
-admin_file = open("secret/admins.txt", "r")
-for line in admin_file:
-    txt = line.strip()
-    txt = txt.split(" = ")
-    admin_id_list.append(int(txt[1]))
-admin_file.close()
-
-# One Time Instantiation
-
-instantiate_directory()
 
 @client.event
 async def on_ready():
@@ -67,10 +49,40 @@ async def send_message(message, dl : bool):
 def combine_series(msg):
     output = ""
     for i in msg:
-        if len(output) + len(i) < 2000:
+        if len(output) + len(i) < 1965:
             output += i
         else :
             output += "\n Max Message Length Reached!"
     return output
+
+def ensure_secrets_exist():
+    if not os.path.exists("secret"):
+        os.makedirs("secret")
+        open("secret/token.txt", "x").close()
+        open("secret/admins.txt", "x").close()
+        print("INFO: Creating secret folder and files.")
+
+# Secrets
+
+# Ensuring files exist
+ensure_secrets_exist()
+
+#Define the bot token
+token_file = open("secret/token.txt", "r")
+token = token_file.read()
+token_file.close()
+
+# Define Admins
+admin_id_list = []
+admin_file = open("secret/admins.txt", "r")
+for line in admin_file:
+    txt = line.strip()
+    txt = txt.split(" = ")
+    admin_id_list.append(int(txt[1]))
+admin_file.close()
+
+# One Time Instantiation
+
+instantiate_directory()
 
 client.run(token)

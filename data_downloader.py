@@ -18,6 +18,9 @@ def instantiate_directory ():
     # find the directory to download to
     dld = cwd + '\DataFiles'
 
+    # check download directory exists, create if not
+    ensure_folder_exists(dld)
+
     # change the working directory to the download folder
     os.chdir(dld)
 
@@ -32,3 +35,8 @@ def download_series(series : str):
     folder = '_db/' + series + year_path
 
     download_folder(repo, folder, directory)
+
+def ensure_folder_exists(_dir):
+    if not os.path.exists(_dir):
+        print("INFO: Creating download folder")
+        os.makedirs(_dir)
