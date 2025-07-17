@@ -36,7 +36,7 @@ def download_series(series : str):
 
     download_folder(repo, folder, directory)
 
-def ensure_folder_exists(_dir):
+def ensure_folder_exists(_dir : str):
     if not os.path.exists(_dir):
         print("INFO: Creating download folder")
         os.makedirs(_dir)

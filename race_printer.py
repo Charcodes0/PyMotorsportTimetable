@@ -1,5 +1,6 @@
-from datetime import datetime
 from platform import system
+from date_tools import convert_to_unix
+
 # The series order is ["f1", "f2", "f3", "fe", "f1-academy", "indycar", "motogp"]
 
 segment_headings = ["FORMULA 1 - ROUND ", "FORMULA 2 - ROUND ", "FORMULA 3 - ROUND ",
@@ -64,9 +65,3 @@ def convert_to_discord_timestamp(timestamp : str):
     unix_timestamp = str(convert_to_unix(timestamp))
     discord_timestamp = "<t:" + unix_timestamp + ":f>"
     return discord_timestamp
-
-# Converts our timestring into a unix timestamp
-def convert_to_unix(timestamp : str):
-    date = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S%z")
-    unix_timestamp = int(date.timestamp())
-    return unix_timestamp

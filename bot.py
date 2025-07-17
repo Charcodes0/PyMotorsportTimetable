@@ -46,7 +46,7 @@ async def send_message(message, dl : bool):
 
     await message.channel.send(combine_series(msg))
 
-def combine_series(msg):
+def combine_series(msg : []):
     output = ""
     for i in msg:
         if len(output) + len(i) < 1965:
