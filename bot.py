@@ -62,10 +62,27 @@ def ensure_secrets_exist():
         open("secret/admins.txt", "x").close()
         print("INFO: Creating secret folder and files.")
 
+def check_files_not_empty():
+    throw_error = False
+    with open("secret/token.txt", "r") as file:
+        if file.read() == '':
+            print("INFO: Secret file is empty.")
+            throw_error = True
+    with open("secret/admins.txt", "r") as file:
+        if file.read() == '':
+            print("INFO: Admins file is empty.")
+            throw_error = True
+    if throw_error:
+        raise ValueError(
+            "Please fill in the token.txt file with your bot token, and admins.txt with the ID's of bot admins.")
+
 # Secrets
 
 # Ensuring files exist
 ensure_secrets_exist()
+
+# Ensuring files have data
+check_files_not_empty()
 
 #Define the bot token
 token_file = open("secret/token.txt", "r")
